@@ -15,7 +15,7 @@ def identity(n):
         """
         I = zeroes(n, n)
         for i in range(n):
-            I.g[i][i] = 1.0
+            I[i][i] = 1.0
         return I
 
 class Matrix(object):
@@ -26,9 +26,8 @@ class Matrix(object):
         self.h = len(grid)
         self.w = len(grid[0])
 
-    #
-    # Primary matrix math methods
-    #############################
+    # Primary matrix math methods #
+    ###############################
  
     def determinant(self):
         """
