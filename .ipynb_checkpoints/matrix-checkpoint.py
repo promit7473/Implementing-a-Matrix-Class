@@ -15,7 +15,7 @@ def identity(n):
         """
         I = zeroes(n, n)
         for i in range(n):
-            I.g[i][i] = 1.0
+            I[i][i] = 1.0
         return I
 
 class Matrix(object):
@@ -26,9 +26,8 @@ class Matrix(object):
         self.h = len(grid)
         self.w = len(grid[0])
 
-    #
-    # Primary matrix math methods
-    #############################
+    # Primary matrix math methods #
+    ###############################
  
     def determinant(self):
         """
@@ -63,6 +62,7 @@ class Matrix(object):
         """
         if not self.is_square():
             raise(ValueError, "Non-square Matrix does not have an inverse.")
+            
         if self.h > 2:
             raise(NotImplementedError, "inversion not implemented for matrices larger than 2x2.")
 
@@ -94,9 +94,8 @@ class Matrix(object):
     def is_square(self):
         return self.h == self.w
 
-    #
-    # Begin Operator Overloading
-    ############################
+    # Begin Operator Overloading #
+    ##############################
     def __getitem__(self,idx):
         """
         Defines the behavior of using square brackets [] on instances
@@ -160,6 +159,10 @@ class Matrix(object):
         """
         Defines the behavior of - operator (as subtraction)
         """
+
+        if self.h != other.h or self.w != self.h:
+            raise(DimensionError, "The size of the two matrices have to be same")
+            
         m = zeroes(self.h, self.w)
         
         for i in range(self.h):
@@ -181,6 +184,10 @@ class Matrix(object):
                     for k in range(self.w):
                         m.g[i][j] += self.g[i][k] * other.g[k][j]
             return m
+
+        else:
+            raise(DimError, "The column of the first matrix have to be same as the
+                  row of the second matrix")
 
     def __rmul__(self, other):
         """

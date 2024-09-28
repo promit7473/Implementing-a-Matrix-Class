@@ -159,6 +159,10 @@ class Matrix(object):
         """
         Defines the behavior of - operator (as subtraction)
         """
+
+        if self.h != other.h or self.w != self.h:
+            raise(DimensionError, "The size of the two matrices have to be same")
+            
         m = zeroes(self.h, self.w)
         
         for i in range(self.h):
@@ -180,6 +184,9 @@ class Matrix(object):
                     for k in range(self.w):
                         m.g[i][j] += self.g[i][k] * other.g[k][j]
             return m
+
+        else:
+            raise(DimError, "The column of the 1st matrix have to be same as the row of the 2nd matrix")
 
     def __rmul__(self, other):
         """
