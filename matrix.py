@@ -62,6 +62,7 @@ class Matrix(object):
         """
         if not self.is_square():
             raise(ValueError, "Non-square Matrix does not have an inverse.")
+            
         if self.h > 2:
             raise(NotImplementedError, "inversion not implemented for matrices larger than 2x2.")
 
@@ -93,9 +94,8 @@ class Matrix(object):
     def is_square(self):
         return self.h == self.w
 
-    #
-    # Begin Operator Overloading
-    ############################
+    # Begin Operator Overloading #
+    ##############################
     def __getitem__(self,idx):
         """
         Defines the behavior of using square brackets [] on instances
